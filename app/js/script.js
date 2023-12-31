@@ -8,7 +8,9 @@ function readFile() {
 
         // Função chamada quando a leitura do arquivo estiver concluída
         reader.onload = function(e) {
-            // Exibe o conteúdo do arquivo no console do navegador
+
+            // AQUI É ONDE FAREMOS UM POST NA API DO OPENAI PARA REALIZAR O RESUMO DA NOSSA TRANSCRIÇÃO DO TEAMS.
+
             console.log("Conteúdo do arquivo:", e.target.result);
         };
 
