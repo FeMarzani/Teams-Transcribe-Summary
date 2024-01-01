@@ -26,7 +26,7 @@ function readFile() {
               messages: [
                 {
                   role: "user",
-                  content: mensagem
+                  content: `Olá Chat! Resuma para mim este texto em no máximo 10 linhas por favor: ${mensagem}`
                 }
               ]
             },
