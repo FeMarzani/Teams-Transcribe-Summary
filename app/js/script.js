@@ -1,58 +1,55 @@
 function readFile() {
-    const fileInput = document.getElementById('fileInput');
-    
-    // Verifica se foi selecionado um arquivo
-    if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
+  const fileInput = document.getElementById('fileInput');
 
-        // Função chamada quando a leitura do arquivo estiver concluída
-        reader.onload = function(e) {
+  // Verifica se foi selecionado um arquivo
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
 
-            // AQUI É ONDE FAREMOS UM POST NA API DO OPENAI PARA REALIZAR O RESUMO DA NOSSA TRANSCRIÇÃO DO TEAMS.
+    let mensagem; // Declara a variável mensagem no escopo global
 
-            const axios = require('axios');
+    // Função chamada quando a leitura do arquivo estiver concluída
+    reader.onload = function (e) {
+      // Exibe o conteúdo do arquivo no console do navegador
+      mensagem = e.target.result;
+      console.log("CONTEUDO A SER ENVIADO PARA A API:", mensagem);
+      console.log("--------");
 
-            const API_KEY = // COLOCAR CHAVE AQUI.
+      const API_KEY = // COLOCAR CHAVE DA API AQUI
 
-            mensagem = e.target.result;
-            console.log("Conteúdo do arquivo:", e.target.result);
-            console.log("Agora irá se tentar fazer o post para o chat GPT")
-            console.log("--------------")
-
-            async function fazerRequisicao(mensagem) {
-                try {
-                  const resposta = await axios.post(
-                    'https://api.openai.com/v1/chat/completions',
-                    {
-                      model: "gpt-3.5-turbo",
-                      messages: [
-                        {
-                          role: "user",
-                          content: mensagem
-                        }
-                      ]
-                    },
-                    {
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
-                      }
-                    }
-                  );
-              
-                  console.log(resposta.data.choices[0]['message']['content']); // Aqui temos A resposta.
-                } catch (erro) {
-                  console.error('Erro ao fazer requisição:', erro);
+      async function fazerRequisicao(mensagem) {
+        try {
+          const resposta = await axios.post(
+            'https://api.openai.com/v1/chat/completions',
+            {
+              model: "gpt-3.5-turbo",
+              messages: [
+                {
+                  role: "user",
+                  content: mensagem
                 }
+              ]
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
               }
-              
-              fazerRequisicao(mensagem);
-        };
+            }
+          );
 
-        // Lê o conteúdo do arquivo como texto
-        reader.readAsText(file);
-    } else {
-        console.log("Nenhum arquivo selecionado.");
-    }
+          console.log(resposta.data.choices[0]['message']['content']);
+        } catch (erro) {
+          console.error('Erro ao fazer requisição:', erro);
+        }
+      }
+
+      fazerRequisicao(mensagem);
+    };
+
+    // Lê o conteúdo do arquivo como texto
+    reader.readAsText(file);
+  } else {
+    console.log("Nenhum arquivo selecionado.");
+  }
 }
