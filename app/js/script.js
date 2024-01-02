@@ -15,7 +15,7 @@ function readFile() {
       console.log("CONTEUDO A SER ENVIADO PARA A API:", mensagem);
       console.log("--------");
 
-      const API_KEY = // APAGANDO KEY ANTERIOR
+      const API_KEY = // NÃO COLOCAR AQUI A CHAVE EM HIPÓTESE NENHUMA
 
       async function fazerRequisicao(mensagem) {
         try {
@@ -38,7 +38,14 @@ function readFile() {
             }
           );
 
+          
           console.log(resposta.data.choices[0]['message']['content']);
+
+          mensagem = resposta.data.choices[0]['message']['content'];
+
+          document.getElementById('mensagem').innerHTML = mensagem;
+
+
         } catch (erro) {
           console.error('Erro ao fazer requisição:', erro);
         }
