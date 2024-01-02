@@ -15,7 +15,7 @@ function readFile() {
       console.log("CONTEUDO A SER ENVIADO PARA A API:", mensagem);
       console.log("--------");
 
-      const API_KEY = // COLOCAR CHAVE DA API AQUI
+      const API_KEY = "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"
 
       async function fazerRequisicao(mensagem) {
         try {
