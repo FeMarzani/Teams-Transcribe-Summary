@@ -1,0 +1,17 @@
+.btn-ler {
+    background-color: #757ee0;
+    color: #fff;
+    border-radius: 8px; 
+    padding: 12px 20px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    transition: background-color 0.5s ease; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-ler:hover {
+    background-color: #4e58c9;
+    cursor: pointer;
+}

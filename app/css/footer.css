@@ -1,0 +1,22 @@
+footer {
+    background-color: #4e58c9;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.contribuidores a {
+    color: white;
+    text-decoration: none;
+}
+
+.contribuidores a:hover {
+    color: #757ee0;
+    text-decoration: none;
+}
