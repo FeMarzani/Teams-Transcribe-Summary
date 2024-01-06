@@ -10,6 +10,7 @@ function readFile() {
 
     // Função chamada quando a leitura do arquivo estiver concluída
     reader.onload = function (e) {
+      erro.innerText = '';
       // Exibe o conteúdo do arquivo no console do navegador
       mensagem = e.target.result;
       console.log("CONTEUDO A SER ENVIADO PARA A API:", mensagem);
@@ -17,8 +18,11 @@ function readFile() {
 
       const API_KEY = // NÃO COLOCAR AQUI A CHAVE EM HIPÓTESE NENHUMA
 
+      
+
       async function fazerRequisicao(mensagem) {
         try {
+          
           const resposta = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
@@ -57,6 +61,8 @@ function readFile() {
     // Lê o conteúdo do arquivo como texto
     reader.readAsText(file);
   } else {
+    erro.innerText = 'Por favor, selecione um arquivo.';
     console.log("Nenhum arquivo selecionado.");
+    
   }
 }
