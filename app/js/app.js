@@ -3,6 +3,7 @@
 const express = require('express');
 const multer = require('multer');
 const AWS = require('aws-sdk');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -49,7 +50,11 @@ app.post('/upload', upload.single('file'), async (req, res) => {
           Body: file.buffer,
         }).promise();
   
-        console.log('File uploaded to S3');
+        console.log(`File ${filename} uploaded to S3`);
+
+        // Buscando o tipo do arquivo
+        const fileType = path.extname(filename).slice(1);
+        console.log(`Object Type is: ${fileType}`)
   
         // Transcrição
         const jobName = `transcricao_${filename}`;
@@ -60,7 +65,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         const transcriptionResponse = await transcribe.startTranscriptionJob({
           TranscriptionJobName: jobName,
           LanguageCode: 'pt-BR',
-          MediaFormat: 'ogg',
+          MediaFormat: fileType,
           Media: {
             MediaFileUri: jobUri,
           },
