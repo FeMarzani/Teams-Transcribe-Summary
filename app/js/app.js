@@ -59,7 +59,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         // Transcrição
         const jobName = `transcricao_${filename}`;
         const jobUri = `s3://${bucketName}/${objectKey}`;
-        const outputKey = `transcriptions/${jobName}.json`;
+        const outputKey = `${jobName}.json`;
+        console.log(outputKey)
         const outputUri = `s3://${outputBucket}/${outputKey}`;
   
         const transcriptionResponse = await transcribe.startTranscriptionJob({
@@ -75,10 +76,28 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   
         console.log('Transcription job started:', transcriptionResponse);
   
+        // Retomando para o retorno da requisição o conteúdo da transcrição, e não somente a response da transcrição propriamente dita obtida
+        const transcriptionFileKey = `${jobName}.json`;
+
+        let transcriptionJobStatus = 'IN_PROGRESS';
+        while (transcriptionJobStatus === 'IN_PROGRESS') {
+          await new Promise(resolve => setTimeout(resolve, 5000)); // Aguardar 5 segundos antes de verificar novamente
+      
+          const transcriptionJobResponse = await transcribe.getTranscriptionJob({ TranscriptionJobName: jobName }).promise();
+          transcriptionJobStatus = transcriptionJobResponse.TranscriptionJob.TranscriptionJobStatus;
+        }
+        
+        const transcriptionOutput = await s3.getObject({
+          Bucket: outputBucket,
+          Key: transcriptionFileKey
+        }).promise();
+
+        const transcribedContent = JSON.parse(transcriptionOutput.Body.toString()).results.transcripts[0].transcript;
+
         res.json({
           success: true,
           message: 'File uploaded successfully',
-          transcriptionResponse: transcriptionResponse,
+          transcribedContent: transcribedContent,
         });
       } else {
         res.status(400).json({ error: 'No file part or file not provided' });

@@ -143,4 +143,3 @@ terraform.tfstate.backup
 #Teste event serverless function
 test
 test.py
-teste.mp4
