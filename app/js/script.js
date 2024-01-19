@@ -1,5 +1,7 @@
 function readFile() {
   const fileInput = document.getElementById('fileInput');
+  let radioButtons = document.getElementsByName("tipoResumo");
+  let selectedOption = "";
 
   // Verifica se foi selecionado um arquivo
   if (fileInput.files.length > 0) {
@@ -16,12 +18,30 @@ function readFile() {
       console.log("CONTEUDO A SER ENVIADO PARA A API:", mensagem);
       console.log("--------");
 
-      const API_KEY = // NÃO COLOCAR AQUI A CHAVE EM HIPÓTESE NENHUMA
+      const API_KEY = "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";
 
       
 
       async function fazerRequisicao(mensagem) {
         try {
+
+          let endpoint;
+          let roleContent;
+
+          // Escolhe o endpoint e a mensagem com base na opção selecionada
+          if (selectedOption === "topicos") {
+            endpoint = 'https://api.openai.com/v1/chat/completions';
+            roleContent = `Olá Chat! Resuma esse texto para mim em tópicos: ${mensagem}`;
+            console.log(roleContent);
+          } else if (selectedOption === "texto") {
+            endpoint = 'https://api.openai.com/v1/chat/completions';
+            roleContent = `Olá Chat! Resuma para mim este texto em no máximo 10 linhas: ${mensagem}`;
+          } else if (selectedOption === "palavras") {
+            endpoint = 'https://api.openai.com/v1/summarization';
+            roleContent = `Resuma para mim em palavras-chave: ${mensagem}`;
+          }
+
+          
           
           const resposta = await axios.post(
             'https://api.openai.com/v1/chat/completions',
@@ -30,7 +50,7 @@ function readFile() {
               messages: [
                 {
                   role: "user",
-                  content: `Olá Chat! Resuma para mim este texto em no máximo 10 linhas por favor: ${mensagem}`
+                  content: `Resuma para mim em palavras-chave: ${mensagem}`
                 }
               ]
             },
