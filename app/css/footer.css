@@ -6,7 +6,7 @@ footer {
     font-weight: bold;
     padding: 10px; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }

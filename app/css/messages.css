@@ -3,3 +3,10 @@
     color: rgb(235, 0, 0);
     display: inline-block;
 }
+
+#mensagem, #mensagemAcao {
+    font-size: 1.5rem;
+    color: #333333;
+    font-weight: bold;
+    text-align: center;
+  }

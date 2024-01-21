@@ -1,4 +1,13 @@
 function readFile() {
+
+  let acaoSelecionada = document.querySelector('input[name="tipoAcao"]:checked').value;
+  
+  if (acaoSelecionada === 'resumoAudioVideo') {
+    console.log(acaoSelecionada)
+  } else if (acaoSelecionada === 'resumoTexto') {
+    console.log(acaoSelecionada)
+  };
+
   const fileInput = document.getElementById('fileInput');
   let valorSelecionado = document.querySelector('input[name="tipoResumo"]:checked').value;
   let selectedOption = valorSelecionado;
