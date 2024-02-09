@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 
 # Cliente OpenAI
-client = OpenAI("COLOCAR CHAVE DA API AQUI")
+client = OpenAI(api_key="COLOCAR CHAVE DA API AQUI")
 
 app = Flask(__name__)
 
@@ -72,14 +72,17 @@ def resumo():
         type_of_generation = type_of_generation + transcript
         print(type_of_generation)
 
-        geracao = client.completions.create(
-            model="gpt-3.5-turbo-instruct",
-            prompt=type_of_generation
+        geracao = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "user", "content": type_of_generation}
+            ]
         )
 
         # Retorna o resumo gerado
-        print(geracao.choices[0].text)
-        return jsonify({'resumo': geracao.choices[0].text}), 200
+        print(geracao.choices[0].message.content)
+        geracao = geracao.choices[0].message.content
+        return jsonify({'resumo': geracao}), 200
 
     except Exception as e:
         return jsonify({'error': f'Erro ao processar o arquivo de vídeo: {str(e)}'}), 500
