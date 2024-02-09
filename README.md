@@ -49,3 +49,18 @@ O Teams Transcriber Summary é um sistema integrado a partir de uma API feita co
 ---
 
 ### 2️⃣ Estrutura de Pastas
+- **app**
+    - **api**
+        - `main.py`
+    - **css**
+        - `buttons.css`
+        - `footer.css`
+        - `header.css`
+        - `messages.css`
+        - `radios.css`
+        - `reset.css`
+        - `style.css`
+    - **js**
+        - `script.js`
+
+### 3️⃣ Como utilizar?
