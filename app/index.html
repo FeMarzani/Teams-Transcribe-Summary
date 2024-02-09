@@ -19,7 +19,7 @@
                 <div class="card">
                     <div class="card-body text-center">
 
-                    <form action="http://localhost:5000/resumo" method="post" enctype="multipart/form-data">
+                    <form id="uploadForm" enctype="multipart/form-data">
                         <img alt="Teams-Logo" height="200" width="200" src="https://logodownload.org/wp-content/uploads/2021/08/microsoft-teams-logo-0.png" class="mx-auto">
                         
                         <h1 class="welcome">Bem vindo! Resuma seu video/áudio aqui!</h1><br>
@@ -47,7 +47,7 @@
                                 <label for="palavras">Palavras chave</label>
                             </div>
                         </fieldset>
-                        <button type="submit" class="btn-ler">Ler Arquivo</button>
+                        <button type="button" class="btn-ler" id="submitBtn">Ler Arquivo</button>
                         <h3 id="mensagem" class="mt-3"></h3>
                     </form>
                     </div>
@@ -62,6 +62,7 @@
         <h1 class="contribuidores">Contribuidores: <a href="https://github.com/aarrieche" target="_blank">Alexandre Arrieche</a> e <a href="https://github.com/femarzani" target="_blank">Felipe Marzani</a></h1>
     </footer>
 
-
+    <script src="js/script.js"></script>
+    
 </body>
 </html>

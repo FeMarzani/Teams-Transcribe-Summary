@@ -4,11 +4,15 @@ import os
 from pathlib import Path
 from openai import OpenAI
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
+
 
 # Cliente OpenAI
-client = OpenAI("COLOCAR CHAVE DA API AQUI")
+client = OpenAI('CHAVE DA API')
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Definindo uma função para pegar o tamanho de um arquivo em MB.
 def tamanho(file_path):
@@ -63,6 +67,7 @@ def resumo():
         )
 
         # Retorna o resumo gerado
+        print(geracao.choices[0].text)
         return jsonify({'resumo': geracao.choices[0].text}), 200
 
     except Exception as e:
