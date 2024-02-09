@@ -23,6 +23,8 @@
     </table>
 </div>
 
+---
+
 ### Ferramentas Utilizadas 📚
 <div style="display: inline-block">
   <img align="center" alt="Html" height="33" width="44" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
@@ -34,9 +36,16 @@
   <img align="center" alt="Flask" height="44" width="60" src="https://raw.githubusercontent.com/devicons/devicon/v2.15.1/icons/flask/flask-original-wordmark.svg">
 </div>
 
+---
+
 ### 1️⃣ Descrição
 O Teams Transcriber Summary é um sistema integrado a partir de uma API feita com Flask. Sua funcionalidade é a de ser um "resumidor" de conteúdo de áudio/vídeo.
 - É permitido envio de arquivos de áudio ou de vídeo (mp3/mp4). O sistema irá transcrever o conteúdo deste arquivo e posteriormente irá resumir o conteúdo, retornando por sua vez para o usuário. 
 - Para estas funcionalidades se utilizou as APIs da OpenAI de Speech to Text e a de Chat Completions. Juntou-se as duas em Python e se construiu uma API com Flask para a realização de um POST de arquivo de vídeo/áudio e tipo de resumo requisitado.
 
 ### 📺 Preview
+![preview](https://github.com/FeMarzani/Teams-Transcribe-Summary/assets/107329291/d75d9212-a587-45a9-8adb-affb531b60ae)
+
+---
+
+### 2️⃣ Estrutura de Pastas
