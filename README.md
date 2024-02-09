@@ -64,3 +64,30 @@ O Teams Transcriber Summary é um sistema integrado a partir de uma API feita co
         - `script.js`
 
 ### 3️⃣ Como utilizar?
+1. Clone este repositório,
+
+2. É necessário ter Python instalado para o restante das ações, portanto se não possuir, instale. 
+
+3. Instale as seguintes bibliotecas abaixo:
+
+    ```bash
+    pip3 install requests openai flask flask-cors
+    ```
+
+4. Cadastre sua chave de API da OpenAI e coloque ela na respectiva posição da linha 11 do arquivo ```app/api/main.py```.
+
+5. Por fim, abra o terminal dentro da pasta api. Verifique se quando abrir o terminal, está no caminho da pasta corretamente. Do contrário use o comando para ir da raiz até a pasta:
+
+    ```bash
+    cd app/api
+    ```
+
+6. Execute o arquivo ```main.py```:
+
+    ```bash
+    python3 main.py
+    ```
+
+7. Agora a API Flask estará pronta para uso. Portanto, abra o ```index.html``` no seu navegador e teste o envio do formulário utilizando algum arquivo de vídeo ou áudio. 
+
+OBS: No momento, o sistema está aceitando apenas arquivos de no máximo 25MB. 
