@@ -15,7 +15,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     .then(response => response.json())
     .then(data => {
         // Manipula a resposta da API e atualiza a página com a resposta
-        document.getElementById('mensagem').innerHTML = data.resumo;
+        document.getElementById('mensagem').textContent = data.resumo;
     })
     .catch(error => {
         console.error('Erro ao enviar dados:', error);

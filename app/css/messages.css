@@ -5,8 +5,10 @@
 }
 
 #mensagem, #mensagemAcao {
-    font-size: 1.5rem;
-    color: #333333;
+    font-size: 1.3rem;
     font-weight: bold;
-    text-align: center;
-  }
+    text-align: justify;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+}
