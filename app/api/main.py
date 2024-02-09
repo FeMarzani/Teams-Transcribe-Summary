@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 
 # Cliente OpenAI
-client = OpenAI('CHAVE DA API')
+client = OpenAI("COLOCAR CHAVE DA API AQUI")
 
 app = Flask(__name__)
 
@@ -20,9 +20,6 @@ def tamanho(file_path):
 
 @app.route('/resumo', methods=['POST'])
 def resumo():
-    
-
-    print(request.files)
 
     # Verificando se foi enviado um video na requisição:
     if 'file' not in request.files:
@@ -44,6 +41,19 @@ def resumo():
     if file_size_mb > 25:
         return jsonify({'error': 'Arquivo é maior que 25 MB'}), 400
 
+    
+    # Obtendo o tipo de resumo selecionado pelo usuário:
+    selected_type = request.form.get('tipoResumo')
+
+    if selected_type == 'topicos':
+        type_of_generation = 'Olá Chat! Resuma esse texto para mim em tópicos: '
+        print("SELECIONADO: "+type_of_generation)
+    elif selected_type == 'texto':
+        type_of_generation = 'Olá Chat! Resuma para mim este texto em no máximo 10 linhas: '
+        print("SELECIONADO: "+type_of_generation)
+    elif selected_type == 'palavras':
+        type_of_generation = 'Resuma para mim em palavras-chave: '
+        print("SELECIONADO: "+type_of_generation)
 
     try:
 
@@ -59,7 +69,8 @@ def resumo():
         audio_file.close()
 
         # Gerando o resumo:
-        type_of_generation = f'Do que este texto se trata: {transcript}'
+        type_of_generation = type_of_generation + transcript
+        print(type_of_generation)
 
         geracao = client.completions.create(
             model="gpt-3.5-turbo-instruct",

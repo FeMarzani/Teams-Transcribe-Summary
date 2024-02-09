@@ -5,6 +5,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
 
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('tipoResumo', selectedOption); // Adiciona o tipo de resumo selecionado
 
     // Envia os dados usando AJAX
     fetch('http://localhost:5000/resumo', {
