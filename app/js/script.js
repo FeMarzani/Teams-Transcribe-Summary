@@ -4,8 +4,6 @@ function readFile() {
   
   if (acaoSelecionada === 'resumoAudioVideo') {
     console.log(acaoSelecionada)
-  } else if (acaoSelecionada === 'resumoTexto') {
-    console.log(acaoSelecionada)
   };
 
   const fileInput = document.getElementById('fileInput');

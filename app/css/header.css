@@ -7,3 +7,12 @@ header {
     padding: 10px; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.welcome {
+    color: #4e58c9;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
